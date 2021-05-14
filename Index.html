@@ -20,7 +20,7 @@
         Up and down buttons to go up or down symbols/numbers, although limited to amount of times can be pressed. -->
 
         <section>
-            <button id="spinButton" onclick="spinLimitCounter(); spinCountDown(); generateThree()">Press to Play</button>
+            <button id="spinButton" onclick="spinLimitCounter(); spinCountDown(); generateThree(); zeroAndTenConverter()">Press to Play</button>
             <button id="spinButtonReset" style="visibility:hidden" onclick="window.location.reload();" disabled></button>
         </section>
         <section>
@@ -83,12 +83,16 @@
         <section>
             <p id="resultOne"></p>
         </section>
+        <section>
+            <p>Total Spin Points:</p>
+            <p id="spinPointsTotal">0</p>
+        </section>
         
         <script>
             var count = 0;
             function spinLimitCounter(){
                 count++;
-                console.log(count);
+                // console.log(count);
                 if (count>9){
                 document.getElementById("spinButton").disabled = true;
                 document.getElementById("spinButton").style.color = 'grey';
@@ -100,7 +104,7 @@
         }
 
             function spinCountDown(){
-                var y = document.getElementById("spinsLeft").innerHTML
+                var y = document.getElementById("spinsLeft").innerHTML;
                 y -= 1;
                 document.getElementById("spinsLeft").innerHTML = y;
             }
@@ -110,34 +114,108 @@
                 one = 1;
                 ten = 10;
                 var colOne = document.getElementById("demoA");
-                    colOne.innerHTML = Math.floor((Math.random() * 8) + 1);
+                    colOne.innerHTML = Math.floor((Math.random() * 9) + 1);
                 var colOneMinus = document.getElementById("demoA-");
                     colOneMinus.innerHTML = colOne.innerHTML - one;
                 var colOnePlus = document.getElementById("demoA+");
                     colOnePlus.innerHTML = Number(colOne.innerHTML) + Number(one);
 
                 var colTwo = document.getElementById("demoB")
-                    colTwo.innerHTML = Math.floor((Math.random() * 8) + 1);
+                    colTwo.innerHTML = Math.floor((Math.random() * 9) + 1);
                 var colTwoMinus = document.getElementById("demoB-");
                     colTwoMinus.innerHTML =(colTwo.innerHTML - one);
                 var colTwoPlus = document.getElementById("demoB+");
                     colTwoPlus.innerHTML = Number(colTwo.innerHTML) + Number(one);
 
                 var colThree = document.getElementById("demoC")
-                    colThree.innerHTML = Math.floor((Math.random() * 8) + 1); 
+                    colThree.innerHTML = Math.floor((Math.random() * 9) + 1); 
                 var colThreeMinus = document.getElementById("demoC-");
                     colThreeMinus.innerHTML =(colThree.innerHTML - one);  
                 var colThreePlus = document.getElementById("demoC+");
                     colThreePlus.innerHTML = Number(colThree.innerHTML) + Number(one);
                     
-                var win = '3 matching symbols';
-                var lose = 'Try again';    
+                var win = '3 matching symbols: 10 Points';
+                var halfWin = '2 matching symbols: 2 Points'
+                var lose = 'No matching, spin again';
+                var twoPoints = 2;
+                var tenPoints = 10;
+                var pointsAdding = document.getElementById("spinPointsTotal").innerHTML    
                 var colOneResult;
                     if (Number(colOne.innerHTML) == Number(colTwo.innerHTML) && Number(colOne.innerHTML) == Number(colThree.innerHTML)) {
-                        colOneResult = win
+                        colOneResult = win;
+                        pointsAdding += tenPoints;
+                    } else if (Number(colOne.innerHTML) == Number(colTwo.innerHTML)){
+                        colOneResult = halfWin;
+                        pointsAdding += twoPoints;
+                        document.getElementById("spinPointsTotal").innerHTML = pointsAdding;
+                    } else if (Number(colOne.innerHTML) == Number(colThree.innerHTML)){ 
+                        colOneResult = halfWin;
+                        pointsAdding += twoPoints;
+                        document.getElementById("spinPointsTotal").innerHTML = pointsAdding;
+                    } else if (Number(colTwo.innerHTML) == Number(colThree.innerHTML)){ 
+                        colOneResult = halfWin;
+                        pointsAdding += twoPoints;
+                        document.getElementById("spinPointsTotal").innerHTML = pointsAdding;
                     } else colOneResult = lose
                     document.getElementById("resultOne").innerHTML = colOneResult;
             }   
+
+            function zeroAndTenConverter(){
+                if (document.getElementById("demoA-").innerHTML == 0) {
+                    document.getElementById("demoA-").innerHTML = 9;
+                }
+                if (document.getElementById("demoA+").innerHTML == 10) {
+                    document.getElementById("demoA+").innerHTML = 1;
+                }
+                if (document.getElementById("demoB-").innerHTML == 0) {
+                    document.getElementById("demoB-").innerHTML = 9;
+                }
+                if (document.getElementById("demoB+").innerHTML == 10) {
+                    document.getElementById("demoB+").innerHTML = 1;
+                }
+                if (document.getElementById("demoC-").innerHTML == 0) {
+                    document.getElementById("demoC-").innerHTML = 9;
+                }
+                if (document.getElementById("demoC+").innerHTML == 10) {
+                    document.getElementById("demoC+").innerHTML = 1;
+                }
+            }
+
+            function spinPoints(){
+
+            }
+
+
+            // function zeroAndTenConverter(resultZero){
+            //     var resultZero = document.getElementById("demoA-");
+            //     console.log(resultZero.innerHTML)
+            //     if (Number(resultZero) < 5) {
+            //     document.getElementById("demoA-").innerHTML = "hello";
+            //     }
+            // }
+
+            // function zeroAndTenConverter(){
+            //     let zero = 0;
+            //     let resultZero = document.getElementById("demoA-");
+            //     console.log(resultZero.innerHTML)
+            //     if (typeof resultZero.innerHTML == zero.innerHTML){
+            //         document.getElementById("Test") = "Hello"
+            //     }
+            // }
+
+
+            // function zeroAndTenConverter(){
+            //     zero = 0
+            //     nine = 9
+            //     var zeroChecker = document.getElementById("demoA-");
+            //     console.log(zeroChecker.innerHTML);
+            //     console.log(zero)
+            //     console.log
+            //         if (zeroChecker.innerHTML === 0); {
+            //             zeroChecker = nine;
+            //         }
+                    
+            // }
         </script>
     </body>
 </html>
