@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!-- - One arm bandit/black jack style game -
+        
+        Button to random generate a three random numbers between 1-8. - Java script from Session 10 code x3
+        Three symbols colounms - table?
+        If number is less or more than dersired numbers they loop back around the the begining or end. If statment?
+        Number is associated with a symbol - Switch statement?
+        Symbols spin through and stop. - Java script??
+        Match all three symbols for points. - If else statement, based on the number associtaed with the symbols.
+        Up and down buttons to go up or down symbols/numbers, although limited to amount of times can be pressed. -->
+
+        <section>
+            <button id="spinButton" onclick="spinLimitCounter(); spinCountDown(); generateThree()">Press to Play</button>
+            <button id="spinButtonReset" style="visibility:hidden" onclick="window.location.reload();" disabled></button>
+        </section>
+        <section>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>Remaining Spins:</p>
+                        </td>
+                        <td>
+                            <p id="spinsLeft">10</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            
+        </section>
+        <section>
+            <div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p id="demoA-"></p>
+                            </td>
+                            <td>
+                                <p id="demoB-"></p>
+                            </td>
+                            <td>
+                                <p id="demoC-"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p id="demoA"></p>
+                            </td>
+                            <td>
+                                <p id="demoB"></p>
+                            </td>
+                            <td>
+                                <p id="demoC"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p id="demoA+"></p>
+                            </td>
+                            <td>
+                                <p id="demoB+"></p>
+                            </td>
+                            <td>
+                                <p id="demoC+"></p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section>
+            <p id="resultOne"></p>
+        </section>
+        
+        <script>
+            var count = 0;
+            function spinLimitCounter(){
+                count++;
+                console.log(count);
+                if (count>9){
+                document.getElementById("spinButton").disabled = true;
+                document.getElementById("spinButton").style.color = 'grey';
+                document.getElementById("spinButton").innerHTML = 'No more spins';
+                document.getElementById("spinButtonReset").disabled = false;
+                document.getElementById("spinButtonReset").innerHTML = 'Reset game';
+                document.getElementById("spinButtonReset").style.visibility = "visible";
+            }
+        }
+
+            function spinCountDown(){
+                var y = document.getElementById("spinsLeft").innerHTML
+                y -= 1;
+                document.getElementById("spinsLeft").innerHTML = y;
+            }
+
+
+            function generateThree() {
+                one = 1;
+                ten = 10;
+                var colOne = document.getElementById("demoA");
+                    colOne.innerHTML = Math.floor((Math.random() * 8) + 1);
+                var colOneMinus = document.getElementById("demoA-");
+                    colOneMinus.innerHTML = colOne.innerHTML - one;
+                var colOnePlus = document.getElementById("demoA+");
+                    colOnePlus.innerHTML = Number(colOne.innerHTML) + Number(one);
+
+                var colTwo = document.getElementById("demoB")
+                    colTwo.innerHTML = Math.floor((Math.random() * 8) + 1);
+                var colTwoMinus = document.getElementById("demoB-");
+                    colTwoMinus.innerHTML =(colTwo.innerHTML - one);
+                var colTwoPlus = document.getElementById("demoB+");
+                    colTwoPlus.innerHTML = Number(colTwo.innerHTML) + Number(one);
+
+                var colThree = document.getElementById("demoC")
+                    colThree.innerHTML = Math.floor((Math.random() * 8) + 1); 
+                var colThreeMinus = document.getElementById("demoC-");
+                    colThreeMinus.innerHTML =(colThree.innerHTML - one);  
+                var colThreePlus = document.getElementById("demoC+");
+                    colThreePlus.innerHTML = Number(colThree.innerHTML) + Number(one);
+                    
+                var win = '3 matching symbols';
+                var lose = 'Try again';    
+                var colOneResult;
+                    if (Number(colOne.innerHTML) == Number(colTwo.innerHTML) && Number(colOne.innerHTML) == Number(colThree.innerHTML)) {
+                        colOneResult = win
+                    } else colOneResult = lose
+                    document.getElementById("resultOne").innerHTML = colOneResult;
+            }   
+        </script>
+    </body>
+</html>
