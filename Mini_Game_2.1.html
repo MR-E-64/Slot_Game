@@ -32,7 +32,7 @@
                         <th colspan=2>+4</th>
                         <th colspan=2>+6</th>
                         <th colspan=2>+8</th>
-                        <th colspan=2>x2</th>
+                        <th colspan=2>+12</th>
                     </tr>
                     <tr style="text-align:center;">
                         <td colspan=2>
@@ -42,7 +42,7 @@
                         <td id="+4.a" colspan=2>-</td>
                         <td id="+6.a" colspan=2>-</td>
                         <td id="+8.a" colspan=2>-</td>
-                        <td id="x2.a" colspan=2>-</td>
+                        <td id="+12.a" colspan=2>-</td>
                     </tr>        
                     <tr>
                         <td colspan=2 style="text-align:center;">
@@ -73,10 +73,10 @@
                             <button onclick="plus8RandomL()" id="p8LB" >Lower</button>    
                         </td>
                         <td colspan=1>
-                            <button onclick="times2RandomH()" id="X2HB" >Higher</button>
+                            <button onclick="plus12RandomH()" id="+12HB" >Higher</button>
                         </td>
                         <td colspan=1>
-                            <button onclick="times2RandomL()" id="X2LB" >Lower</button>    
+                            <button onclick="plus12RandomL()" id="+12LB" >Lower</button>    
                         </td>
                     </tr>          
                 </table>
@@ -92,12 +92,12 @@
             document.getElementById("p6LB").disabled = true;
             document.getElementById("p8HB").disabled = true;
             document.getElementById("p8LB").disabled = true;
-            document.getElementById("X2HB").disabled = true;
-            document.getElementById("X2LB").disabled = true;
+            document.getElementById("+12HB").disabled = true;
+            document.getElementById("+12LB").disabled = true;
 
             function startNumberRandom() {
                 var mGC1 = document.getElementById("startNumber");
-                    mGC1.innerHTML = Math.floor((Math.random() * 13) + 1);
+                    mGC1.innerHTML = Math.floor((Math.random() * 12) + 1);
                     document.getElementById("+2.a").innerHTML = "?";
                     document.getElementById("p2HB").disabled = false;
                     document.getElementById("p2LB").disabled = false;
@@ -106,7 +106,7 @@
 
             function plus2RandomH(){
                 var mGC2 = document.getElementById("+2.a");
-                    mGC2.innerHTML = Math.floor((Math.random() * 13) + 1);
+                    mGC2.innerHTML = Math.floor((Math.random() * 12) + 1);
                 var mGC2 = mGC2.innerHTML;
                 var mG2Zero = 0;
                 var mG2multix2 = document.getElementById("miniGame2PointsRisk").innerHTML;
@@ -126,7 +126,7 @@
 
                 function plus2RandomL(){
                 var mGC2 = document.getElementById("+2.a");
-                    mGC2.innerHTML = Math.floor((Math.random() * 13) + 1);
+                    mGC2.innerHTML = Math.floor((Math.random() * 12) + 1);
                 var mGC2 = mGC2.innerHTML;
                 var mG2Zero = 0;
                 var mG2multix2 = document.getElementById("miniGame2PointsRisk").innerHTML;
@@ -146,7 +146,7 @@
 
                 function plus4RandomH(){
                 var mGC2 = document.getElementById("+4.a");
-                    mGC2.innerHTML = Math.floor((Math.random() * 13) + 1);
+                    mGC2.innerHTML = Math.floor((Math.random() * 12) + 1);
                 var mGC2 = mGC2.innerHTML;
                 var mG2Zero = 0;
                 var mG2multix2 = document.getElementById("miniGame2PointsRisk").innerHTML;
@@ -166,7 +166,7 @@
 
                 function plus4RandomL(){
                 var mGC2 = document.getElementById("+4.a");
-                    mGC2.innerHTML = Math.floor((Math.random() * 13) + 1);
+                    mGC2.innerHTML = Math.floor((Math.random() * 12) + 1);
                 var mGC2 = mGC2.innerHTML;
                 var mG2Zero = 0;
                 var mG2multix2 = document.getElementById("miniGame2PointsRisk").innerHTML;
@@ -186,7 +186,7 @@
 
                 function plus6RandomH(){
                 var mGC2 = document.getElementById("+6.a");
-                    mGC2.innerHTML = Math.floor((Math.random() * 13) + 1);
+                    mGC2.innerHTML = Math.floor((Math.random() * 12) + 1);
                 var mGC2 = mGC2.innerHTML;
                 var mG2Zero = 0;
                 var mG2multix2 = document.getElementById("miniGame2PointsRisk").innerHTML;
@@ -206,7 +206,7 @@
 
                 function plus6RandomL(){
                 var mGC2 = document.getElementById("+6.a");
-                    mGC2.innerHTML = Math.floor((Math.random() * 13) + 1);
+                    mGC2.innerHTML = Math.floor((Math.random() * 12) + 1);
                 var mGC2 = mGC2.innerHTML;
                 var mG2Zero = 0;
                 var mG2multix2 = document.getElementById("miniGame2PointsRisk").innerHTML;
@@ -226,7 +226,7 @@
 
                 function plus8RandomH(){
                 var mGC2 = document.getElementById("+8.a");
-                    mGC2.innerHTML = Math.floor((Math.random() * 13) + 1);
+                    mGC2.innerHTML = Math.floor((Math.random() * 12) + 1);
                 var mGC2 = mGC2.innerHTML;
                 var mG2Zero = 0;
                 var mG2multix2 = document.getElementById("miniGame2PointsRisk").innerHTML;
@@ -237,16 +237,16 @@
                 document.getElementById("p8LB").disabled = true;
                     if (Number(mGC2) > Number(mGC1A)) {
                         document.getElementById("miniGame2PointsRisk").innerHTML = totalOne;
-                        document.getElementById("X2HB").disabled = false;
-                        document.getElementById("X2LB").disabled = false;
-                        document.getElementById("X2.a").innerHTML = "?";
+                        document.getElementById("+12HB").disabled = false;
+                        document.getElementById("+12LB").disabled = false;
+                        document.getElementById("+12.a").innerHTML = "?";
                     } else
                         document.getElementById("miniGame2PointsRisk").innerHTML = mG2Zero;               
                 }
 
                 function plus8RandomL(){
                 var mGC2 = document.getElementById("+8.a");
-                    mGC2.innerHTML = Math.floor((Math.random() * 13) + 1);
+                    mGC2.innerHTML = Math.floor((Math.random() * 12) + 1);
                 var mGC2 = mGC2.innerHTML;
                 var mG2Zero = 0;
                 var mG2multix2 = document.getElementById("miniGame2PointsRisk").innerHTML;
@@ -257,39 +257,41 @@
                 document.getElementById("p8LB").disabled = true;
                     if (Number(mGC2) < Number(mGC1A)) {
                         document.getElementById("miniGame2PointsRisk").innerHTML = totalOne;
-                        document.getElementById("X2HB").disabled = false;
-                        document.getElementById("X2LB").disabled = false;
-                        document.getElementById("X2.a").innerHTML = "?";
+                        document.getElementById("+12HB").disabled = false;
+                        document.getElementById("+12LB").disabled = false;
+                        document.getElementById("+12.a").innerHTML = "?";
                     } else
                         document.getElementById("miniGame2PointsRisk").innerHTML = mG2Zero;
                 }
 
-                function times2RandomH(){
-                var mGC2 = document.getElementById("x2.a");
-                    mGC2.innerHTML = Math.floor((Math.random() * 13) + 1);
+                function plus12RandomH(){
+                var mGC2 = document.getElementById("+12.a");
+                    mGC2.innerHTML = Math.floor((Math.random() * 12) + 1);
                 var mGC2 = mGC2.innerHTML;
                 var mG2Zero = 0;
                 var mG2multix2 = document.getElementById("miniGame2PointsRisk").innerHTML;
-                var totalOne = mG2multix2 * 2;
+                var plusTwelve = 12;
+                var totalOne = Number(mG2multix2) + plusTwelve;
                 var mGC1A = document.getElementById("+8.a").innerHTML;
-                document.getElementById("X2HB").disabled = true;
-                document.getElementById("X2LB").disabled = true;
+                document.getElementById("+12HB").disabled = true;
+                document.getElementById("+12LB").disabled = true;
                     if (Number(mGC2) > Number(mGC1A)) {
                         document.getElementById("miniGame2PointsRisk").innerHTML = totalOne;
                     } else
                         document.getElementById("miniGame2PointsRisk").innerHTML = mG2Zero;               
                 }
 
-                function times2RandomL(){
-                var mGC2 = document.getElementById("x2.a");
-                    mGC2.innerHTML = Math.floor((Math.random() * 13) + 1);
+                function plus12RandomL(){
+                var mGC2 = document.getElementById("+12.a");
+                    mGC2.innerHTML = Math.floor((Math.random() * 12) + 1);
                 var mGC2 = mGC2.innerHTML;
                 var mG2Zero = 0;
                 var mG2multix2 = document.getElementById("miniGame2PointsRisk").innerHTML;
-                var totalOne = mG2multix2 * 2;
+                var plusTwelve = 12;
+                var totalOne = Number(mG2multix2) + plusTwelve;
                 var mGC1A = document.getElementById("+8.a").innerHTML;
-                document.getElementById("X2HB").disabled = true;
-                document.getElementById("X2LB").disabled = true;
+                document.getElementById("+12HB").disabled = true;
+                document.getElementById("+12LB").disabled = true;
                     if (Number(mGC2) < Number(mGC1A)) {
                         document.getElementById("miniGame2PointsRisk").innerHTML = totalOne;
                     } else
