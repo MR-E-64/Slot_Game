@@ -8,7 +8,57 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
     </head>
-    <body>      
+    <body>  
+        <section>
+            <div>
+                <table border="1">
+                    <tr>
+                        <th colspan="10">
+                            <h3 style="text-align: center;">BlackJack</h3>
+                        </th>
+                    </tr>
+                    <tr>
+                            <td colspan=1>Points at risk:</td> 
+                            <td colspan=1 style="text-align: center;" id="miniGame3PointsRisk">10</td>
+                    </tr>
+                    <tr>
+                        <td colspan=2>Beat Dealer X2 points</td>
+                        <td colspan=2>Backjack X3 Points</td>
+                        <td colspan=2>Bust, lose all points</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: center;">Dealer's hand</td>
+                        <td colspan="1" style="text-align: center;">Dealer's score</td>
+                        <td colspan="1" style="text-align: center;" id="dealerCurrentScore">0</td>
+                    </tr>
+                    <tr style="text-align:center;">
+                        <td colspan=2>
+                            <p id="startNumber">?</p>
+                        </td>
+                        <td colspan=2 style="text-align: center;" id="cardTwoDealer">-</td>
+                        <td colspan=2 style="text-align: center;" id="cardThreeDealer">-</td>
+                        <td colspan=2 style="text-align: center;" id="cardFourDealer">-</td>
+                        <td colspan=2 style="text-align: center;" id="cardFiveDealer">-</td>
+                    </tr>    
+                    <tr>
+                        <td colspan=2 style="text-align: center;">Your Hand</td>
+                        <td colspan=2 style="text-align: center;"><button style="text-align: center;">Hit</button> or <button>Stick</button></td>
+                        <td colspan=2 style="text-align: center;">Ace <button>1</button> or <button>11</button></td>
+                        <td colspan=1 style="text-align: center;">Your current score</td>
+                        <td colspan=1 style="text-align: center;" id="yourCurrentScore">0</td>
+                    </tr>
+                    <tr>
+                        <td colspan=2 style="text-align: center;" id="cardOneYours">-</td>
+                        <td colspan=2 style="text-align: center;" id="cardTwoYours">-</td>
+                        <td colspan=2 style="text-align: center;" id="cardThreeYours">-</td>
+                        <td colspan=2 style="text-align: center;" id="cardFourYours">-</td>
+                        <td colspan=2 style="text-align: center;" id="cardFiveYours">-</td>
+                    </tr>
+                    <tr>
+                    </tr>
+                </table>
+            </div>
+        </section>    
         <script src="" async defer></script>
     </body>
 </html>
