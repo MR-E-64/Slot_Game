@@ -20,11 +20,12 @@
                     <tr>
                             <td colspan=1>Points at risk:</td> 
                             <td colspan=1 style="text-align: center;" id="miniGame3PointsRisk">10</td>
+                            <td colspan=1>Beat Dealer X2 points</td>
+                            <td colspan=1>Backjack X3 Points</td>
+                            <td colspan=1>Bust, lose all points</td>
                     </tr>
                     <tr>
-                        <td colspan=2>Beat Dealer X2 points</td>
-                        <td colspan=2>Backjack X3 Points</td>
-                        <td colspan=2>Bust, lose all points</td>
+                        <td colspan="1"><button onclick="clickToPlay(); currentFirstScore()">Click to play</button></td> 
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: center;">Dealer's hand</td>
@@ -35,30 +36,80 @@
                         <td colspan=2>
                             <p id="startNumber">?</p>
                         </td>
-                        <td colspan=2 style="text-align: center;" id="cardTwoDealer">-</td>
-                        <td colspan=2 style="text-align: center;" id="cardThreeDealer">-</td>
-                        <td colspan=2 style="text-align: center;" id="cardFourDealer">-</td>
-                        <td colspan=2 style="text-align: center;" id="cardFiveDealer">-</td>
+                        <td colspan=2 style="text-align: center;" id="cardTwoDealer">0</td>
+                        <td colspan=2 style="text-align: center;" id="cardThreeDealer">0</td>
+                        <td colspan=2 style="text-align: center;" id="cardFourDealer">0</td>
+                        <td colspan=2 style="text-align: center;" id="cardFiveDealer">0</td>
                     </tr>    
                     <tr>
                         <td colspan=2 style="text-align: center;">Your Hand</td>
-                        <td colspan=2 style="text-align: center;"><button style="text-align: center;">Hit</button> or <button>Stick</button></td>
+                        <td colspan=2 style="text-align: center;"><button style="text-align: center;" id="hitButton" onclick="hitButtonFuction(); playerCardCounter()" >Hit</button> or <button style="text-align: center;" id="stickButton" onclick="stickButtonFuction()">Stick</button></td>
                         <td colspan=2 style="text-align: center;">Ace <button>1</button> or <button>11</button></td>
                         <td colspan=1 style="text-align: center;">Your current score</td>
                         <td colspan=1 style="text-align: center;" id="yourCurrentScore">0</td>
                     </tr>
                     <tr>
-                        <td colspan=2 style="text-align: center;" id="cardOneYours">-</td>
-                        <td colspan=2 style="text-align: center;" id="cardTwoYours">-</td>
-                        <td colspan=2 style="text-align: center;" id="cardThreeYours">-</td>
-                        <td colspan=2 style="text-align: center;" id="cardFourYours">-</td>
-                        <td colspan=2 style="text-align: center;" id="cardFiveYours">-</td>
+                        <td colspan=2 style="text-align: center;" id="cardOnePlayer">0</td>
+                        <td colspan=2 style="text-align: center;" id="cardTwoPlayer">0</td>
+                        <td colspan=2 style="text-align: center;" id="cardThreePlayer">0</td>
+                        <td colspan=2 style="text-align: center;" id="cardFourPlayer">0</td>
+                        <td colspan=2 style="text-align: center;" id="cardFivePlayer">0</td>
                     </tr>
                     <tr>
                     </tr>
                 </table>
             </div>
         </section>    
-        <script src="" async defer></script>
+        <script>
+            function clickToPlay() {
+                var dSC1 = document.getElementById("startNumber");
+                    dSC1.innerHTML = Math.floor((Math.random() * 12) + 1);
+                var pSC1 = document.getElementById("cardOnePlayer");
+                    pSC1.innerHTML = Math.floor((Math.random() * 12) + 1);
+            }
+
+            function currentFirstScore() {
+                var pCS = document.getElementById("yourCurrentScore");
+                    pCS.innerHTML = document.getElementById("cardOnePlayer").innerHTML;
+            }
+
+            function hitButtonFuction() {
+                if (document.getElementById("cardOnePlayer").innerHTML > 0 && document.getElementById("cardTwoPlayer").innerHTML < 1){
+                    var pSC2 = document.getElementById("cardTwoPlayer");
+                    pSC2.innerHTML = Math.floor((Math.random() * 12) + 1);
+                } else if  (document.getElementById("cardTwoPlayer").innerHTML > 0 && document.getElementById("cardThreePlayer").innerHTML < 1){
+                    var pSC3 = document.getElementById("cardThreePlayer");
+                    pSC3.innerHTML = Math.floor((Math.random() * 12) + 1);
+                 } else if  (document.getElementById("cardThreePlayer").innerHTML > 0 && document.getElementById("cardFourPlayer").innerHTML < 1){
+                    var pSC4 = document.getElementById("cardFourPlayer");
+                    pSC4.innerHTML = Math.floor((Math.random() * 12) + 1);
+                } else if (document.getElementById("cardFourPlayer").innerHTML > 0 && document.getElementById("cardFivePlayer").innerHTML < 1){
+                    var pSC5 = document.getElementById("cardFivePlayer");
+                    pSC5.innerHTML = Math.floor((Math.random() * 12) + 1);
+                } else{}
+            }
+            function playerCardCounter() {
+                var cOneP = document.getElementById("cardOnePlayer").innerHTML;
+                var cTwoP = document.getElementById("cardTwoPlayer").innerHTML;
+                var cThreeP = document.getElementById("cardThreePlayer").innerHTML;
+                var cFourP = document.getElementById("cardFourPlayer").innerHTML;
+                var cFiveP = document.getElementById("cardFivePlayer").innerHTML;
+                var cOneToTwo = Number(cOneP) + Number(cTwoP);
+                var cOneToThree = Number(cOneP) + Number(cTwoP) + Number(cThreeP);
+                var cOneToFour = Number(cOneP) + Number(cTwoP) + Number(cThreeP) + Number(cFourP);
+                var cOneToFive = Number(cOneP) + Number(cTwoP) + Number(cThreeP) + Number(cFourP) + Number(cFiveP);
+
+                if (cOneToTwo > 21 || cOneToThree > 21 || cOneToFour > 21 || cOneToFive > 21){
+                document.getElementById("yourCurrentScore").innerHTML = "Bust";
+            } else document.getElementById("yourCurrentScore").innerHTML = cOneToFive;
+        }
+
+            function stickButtonFuction() {
+                if (document.getElementById("startNumber").innerHTML > 1 && document.getElementById("cardTwoDealer").innerHTML < 1){
+                var dSC2 = document.getElementById("cardTwoDealer");
+                    dSC2.innerHTML = Math.floor((Math.random() * 12) + 1);
+                }
+            }
+        </script>
     </body>
 </html>
