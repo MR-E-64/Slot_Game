@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>  
+        <section>
+            <div>
+                <table border="1">
+                    <tr>
+                        <th colspan="10">
+                            <h3 style="text-align: center;">BlackJack</h3>
+                        </th>
+                    </tr>
+                    <tr>
+                            <td colspan=1>Points at risk:</td> 
+                            <td colspan=1 style="text-align: center;" id="miniGame3PointsRisk">10</td>
+                            <td colspan=1>Beat Dealer X2 points</td>
+                            <td colspan=1>Backjack X3 Points</td>
+                            <td colspan=1>Bust, lose all points</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"><button onclick="clickToPlay(); currentFirstScore(); jQKDealerConvert(); jQKPlayerConvert();">Click to play</button></td> 
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: center;">Dealer's hand</td>
+                        <td colspan="1" style="text-align: center;">Dealer's score</td>
+                        <td colspan="1" style="text-align: center;" id="dealerCurrentScore">0</td>
+                    </tr>
+                    <tr style="text-align:center;">
+                        <td colspan=2>
+                            <p id="startNumber">0</p>
+                        </td>
+                        <td colspan=2 style="text-align: center;" id="cardTwoDealer">0</td>
+                        <td colspan=2 style="text-align: center;" id="cardThreeDealer">0</td>
+                        <td colspan=2 style="text-align: center;" id="cardFourDealer">0</td>
+                        <td colspan=2 style="text-align: center;" id="cardFiveDealer">0</td>
+                    </tr>    
+                    <tr>
+                        <td colspan=2 style="text-align: center;">Your Hand</td>
+                        <td colspan=2 style="text-align: center;"><button style="text-align: center;" id="hitButton" onclick="hitButtonFuction(); playerCardCounter(); jQKPlayerConvert();">Hit</button> or <button style="text-align: center;" id="stickButton" onclick="stickButtonFuction(); dealerCardCounter(); jQKDealerConvert();">Stick</button></td>
+                        <td colspan=2 style="text-align: center;">Ace <button style="text-align: center;" id="aceButton" onclick="playerCardCounter()">1</button> or <button style="text-align: center;" id="aceButton" onclick="playerAceEleven(); playerCardCounter();">11</button></td>
+                        <td colspan=1 style="text-align: center;">Your current score</td>
+                        <td colspan=1 style="text-align: center;" id="yourCurrentScore">0</td>
+                    </tr>
+                    <tr>
+                        <td colspan=2 style="text-align: center;" id="cardOnePlayer">0</td>
+                        <td colspan=2 style="text-align: center;" id="cardTwoPlayer">0</td>
+                        <td colspan=2 style="text-align: center;" id="cardThreePlayer">0</td>
+                        <td colspan=2 style="text-align: center;" id="cardFourPlayer">0</td>
+                        <td colspan=2 style="text-align: center;" id="cardFivePlayer">0</td>
+                    </tr>
+                    <tr>
+                    </tr>
+                </table>
+            </div>
+        </section>    
+        <script>
+            function clickToPlay() {
+                var dSC1 = document.getElementById("startNumber");
+                    dSC1.innerHTML = Math.floor((Math.random() * 12) + 1);
+                var pSC1 = document.getElementById("cardOnePlayer");
+                    pSC1.innerHTML = Math.floor((Math.random() * 12) + 1);
+            }
+
+            function currentFirstScore() {
+                var pCS = document.getElementById("yourCurrentScore");
+                    pCS.innerHTML = document.getElementById("cardOnePlayer").innerHTML;
+            }
+
+            function hitButtonFuction() {
+                if (document.getElementById("cardOnePlayer").innerHTML > 0 && document.getElementById("cardTwoPlayer").innerHTML < 1){
+                    var pSC2 = document.getElementById("cardTwoPlayer");
+                    pSC2.innerHTML = Math.floor((Math.random() * 12) + 1);
+                } else if  (document.getElementById("cardTwoPlayer").innerHTML > 0 && document.getElementById("cardThreePlayer").innerHTML < 1){
+                    var pSC3 = document.getElementById("cardThreePlayer");
+                    pSC3.innerHTML = Math.floor((Math.random() * 12) + 1);
+                 } else if  (document.getElementById("cardThreePlayer").innerHTML > 0 && document.getElementById("cardFourPlayer").innerHTML < 1){
+                    var pSC4 = document.getElementById("cardFourPlayer");
+                    pSC4.innerHTML = Math.floor((Math.random() * 12) + 1);
+                } else if (document.getElementById("cardFourPlayer").innerHTML > 0 && document.getElementById("cardFivePlayer").innerHTML < 1){
+                    var pSC5 = document.getElementById("cardFivePlayer");
+                    pSC5.innerHTML = Math.floor((Math.random() * 12) + 1);
+                } else{}
+            }
+
+            function playerAceEleven(){
+                var pAceEleven = 11;
+                if (document.getElementById("cardOnePlayer").innerHTML == 1 && document.getElementById("cardTwoPlayer").innerHTML < 1){
+                    var pAE2 = document.getElementById("cardOnePlayer");
+                    pAE2.innerHTML = pAceEleven;
+                }   else if (document.getElementById("cardTwoPlayer").innerHTML == 1 && document.getElementById("cardThreePlayer").innerHTML < 1){
+                    var pAE3 = document.getElementById("cardTwoPlayer");
+                    pAE3.innerHTML = pAceEleven;
+                }   else if (document.getElementById("cardThreePlayer").innerHTML == 1 && document.getElementById("cardFourPlayer").innerHTML < 1){
+                    var pAE4 = document.getElementById("cardThreePlayer");
+                    pAE4.innerHTML = pAceEleven;
+                }   else if (document.getElementById("cardFourPlayer").innerHTML == 1 && document.getElementById("cardFivePlayer").innerHTML < 1){
+                    var pAE5 = document.getElementById("cardTwoPlayer");
+                    pAE5.innerHTML = pAceEleven;
+                }   else if (document.getElementById("cardFivePlayer").innerHTML == 1 && document.getElementById("cardFourPlayer").innerHTML > 0){
+                    var pAE6 = document.getElementById("cardFivePlayer");
+                    pAE6.innerHTML = pAceEleven;
+                }else{}
+            }
+
+            function playerCardCounter() {
+                var cOneP = document.getElementById("cardOnePlayer").innerHTML;
+                var cTwoP = document.getElementById("cardTwoPlayer").innerHTML;
+                var cThreeP = document.getElementById("cardThreePlayer").innerHTML;
+                var cFourP = document.getElementById("cardFourPlayer").innerHTML;
+                var cFiveP = document.getElementById("cardFivePlayer").innerHTML;
+                var cOneToTwo = Number(cOneP) + Number(cTwoP);
+                var cOneToThree = Number(cOneP) + Number(cTwoP) + Number(cThreeP);
+                var cOneToFour = Number(cOneP) + Number(cTwoP) + Number(cThreeP) + Number(cFourP);
+                var cOneToFive = Number(cOneP) + Number(cTwoP) + Number(cThreeP) + Number(cFourP) + Number(cFiveP);
+
+                if (cOneToTwo > 21 || cOneToThree > 21 || cOneToFour > 21 || cOneToFive > 21){
+                document.getElementById("yourCurrentScore").innerHTML = "Bust";
+                } else document.getElementById("yourCurrentScore").innerHTML = cOneToFive;
+            }
+
+            function stickButtonFuction() {
+                if (document.getElementById("startNumber").innerHTML > 0 && document.getElementById("cardTwoDealer").innerHTML < 1){
+                var dSC2 = document.getElementById("cardTwoDealer");
+                    dSC2.innerHTML = Math.floor((Math.random() * 12) + 1);
+                } else if (document.getElementById("cardTwoDealer").innerHTML > 0 && document.getElementById("cardThreeDealer").innerHTML < 1){
+                var dSC3 = document.getElementById("cardThreeDealer");
+                    dSC3.innerHTML = Math.floor((Math.random() * 12) + 1);
+                } else if (document.getElementById("cardThreeDealer").innerHTML > 0 && document.getElementById("cardFourDealer").innerHTML < 1){
+                var dSC4 = document.getElementById("cardFourDealer");
+                    dSC4.innerHTML = Math.floor((Math.random() * 12) + 1);
+                } else if (document.getElementById("cardFourDealer").innerHTML > 0 && document.getElementById("cardFiveDealer").innerHTML < 1){
+                var dSC5 = document.getElementById("cardFiveDealer");
+                    dSC5.innerHTML = Math.floor((Math.random() * 12) + 1);
+                } else{}
+            }
+            function dealerCardCounter() {
+                var cOneD = document.getElementById("startNumber").innerHTML;
+                var cTwoD = document.getElementById("cardTwoDealer").innerHTML;
+                var cThreeD = document.getElementById("cardThreeDealer").innerHTML;
+                var cFourD = document.getElementById("cardFourDealer").innerHTML;
+                var cFiveD = document.getElementById("cardFiveDealer").innerHTML;
+                var cOneToTwoD = Number(cOneD) + Number(cTwoD);
+                var cOneToThreeD = Number(cOneD) + Number(cTwoD) + Number(cThreeD);
+                var cOneToFourD = Number(cOneD) + Number(cTwoD) + Number(cThreeD) + Number(cFourD);
+                var cOneToFiveD = Number(cOneD) + Number(cTwoD) + Number(cThreeD) + Number(cFourD) + Number(cFiveD);
+
+                if (cOneToTwoD > 21 || cOneToThreeD > 21 || cOneToFourD > 21 || cOneToFiveD > 21){
+                document.getElementById("dealerCurrentScore").innerHTML = "Bust";
+                } else document.getElementById("dealerCurrentScore").innerHTML = cOneToFiveD;
+            }
+
+            function jQKDealerConvert(){
+                var jQKConvert = 10;
+                var jQKDS = document.getElementById("startNumber").innerHTML;
+                var jQKD2 = document.getElementById("cardTwoDealer").innerHTML;
+                var jQKD3 = document.getElementById("cardThreeDealer").innerHTML;
+                var jQKD4 = document.getElementById("cardFourDealer").innerHTML;
+                var jQKD5 = document.getElementById("cardFiveDealer").innerHTML;
+
+                if (jQKDS > 11 && jQKD2 < 1){
+                    document.getElementById("startNumber").innerHTML = jQKConvert;
+                } else if (jQKD2 > 10 && jQKD3 < 1){
+                    document.getElementById("cardTwoDealer").innerHTML = jQKConvert;
+                } else if (jQKD3 > 10 && jQKD4 < 1){
+                    document.getElementById("cardThreeDealer").innerHTML = jQKConvert;
+                } else if (jQKD4 > 10 && jQKD5 < 1){
+                    document.getElementById("cardFourDealer").innerHTML = jQKConvert;
+                } else if (jQKD5 > 10 && jQKD4 > 0){
+                    document.getElementById("cardFiveDealer").innerHTML = jQKConvert;
+                } else{}
+            }
+
+            function jQKPlayerConvert(){
+                var jQKConvert = 10;
+                var jQKP1 = document.getElementById("cardOnePlayer").innerHTML;
+                var jQKP2 = document.getElementById("cardTwoPlayer").innerHTML;
+                var jQKP3 = document.getElementById("cardThreePlayer").innerHTML;
+                var jQKP4 = document.getElementById("cardFourPlayer").innerHTML;
+                var jQKP5 = document.getElementById("cardFivePlayer").innerHTML;
+
+                if (jQKP1 > 10 && jQKP2 < 1){
+                    document.getElementById("cardOnePlayer").innerHTML = jQKConvert;
+                } else if (jQKP2 > 10 && jQKP3 < 1){
+                    document.getElementById("cardTwoPlayer").innerHTML = jQKConvert;
+                } else if (jQKP3 > 10 && jQKP3 < 1){
+                    document.getElementById("cardThreePlayer").innerHTML = jQKConvert;
+                } else if (jQKP4 > 10 && jQKP4 < 1){
+                    document.getElementById("cardFourPlayer").innerHTML = jQKConvert;
+                } else if (jQKP5 > 10 && jQKP5 > 0){
+                    document.getElementById("cardFivePlayer").innerHTML = jQKConvert;
+                } else{}    
+            }
+
+        </script>
+    </body>
+</html>
